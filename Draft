@@ -1,0 +1,56 @@
+from tkinter import *
+import tkinter as tk
+
+seq=""
+
+root = Tk()
+root.title('SilkomeGPT')
+root.geometry('500x300')
+root.resizable(False, False)
+
+frame = tk.Frame(master=root, width=200, height=200)
+frame.place(x=40, y=10)
+
+label1 = Label(frame, text="Toughness")
+label1.pack(side=TOP)
+att1 = Scale(frame, from_=0.1, to=1, resolution=0.01, orient=HORIZONTAL)
+att1.pack(side=TOP)
+
+label2 = Label(frame, text="Elasticity")
+label2.pack(side=TOP)
+att2 = Scale(frame, from_=0.1, to=1, resolution=0.01, orient=HORIZONTAL)
+att2.pack(side=TOP)
+
+label3 = Label(frame, text="Tensile Strength")
+label3.pack(side=TOP)
+att3 = Scale(frame, from_=0.1, to=1, resolution=0.01, orient=HORIZONTAL)
+att3.pack(side=TOP)
+
+label4 = Label(frame, text="Strain at Break")
+label4.pack(side=TOP)
+att4 = Scale(frame, from_=0.1, to=1, resolution=0.01, orient=HORIZONTAL)
+att4.pack(side=TOP)
+
+frame2 = tk.Frame(master=root, width=220, height=300)
+frame2.place(x=200, y=60)
+x = Text(frame2, height=6, width=25, font=("Calibri", 15))
+x.insert(END, seq)
+x.pack(side=BOTTOM)
+x.config(state=DISABLED)
+
+def genseq():
+    x.config(state=NORMAL)
+    x.delete('1.0', END)
+    tough = att1.get()
+    elas = att2.get()
+    tens = att3.get()
+    stra = att4.get()
+    seq = "gcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgcgc"
+    x.insert(END, seq)
+    x.config(state=DISABLED)
+
+calc = Button(root, text="Generate", fg="black", command = genseq)
+calc.pack(side=BOTTOM)
+
+
+mainloop()
